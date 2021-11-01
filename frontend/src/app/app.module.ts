@@ -5,19 +5,21 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app.routing.module';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { MainPagesComponent } from './main-pages/main-pages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
     MessagesComponent,
     HeaderComponent,
-    AuthComponent
+    AuthComponent,
+    RegisterUserComponent,
+    MainPagesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { MainPagesComponent } from './main-pages/main-pages.component';
 import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/mensagens', pathMatch: 'full'},
-  {path: 'mensagens', component: MessagesComponent},
+  {path: '', redirectTo: '/auth', pathMatch: 'full'},
+  {path: 'auth', component: AuthComponent},
+  {path: 'main', component: MainPagesComponent, children: [
+    {path:'messages', component: MessagesComponent}
+  ]},
 
 ];
 
