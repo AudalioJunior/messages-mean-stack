@@ -1,0 +1,16 @@
+<div class="container-messages">
+  <div class="box-messages" *ngFor="let message of messages">
+    <span class="user-id">User name</span>
+    <li>{{message}}</li>
+  </div>
+</div>
+<div class="input-message">
+<div class="input">
+  <form [formGroup]="formGroup">
+    <input type="text" formControlName="message" placeholder="Digite sua mensagem!">
+  </form>
+</div>
+<div class="btn-send">
+  <button (click)="sendMessage()">Enviar o teste</button>
+</div>
+</div>
