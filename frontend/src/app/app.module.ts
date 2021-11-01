@@ -11,6 +11,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app.routing.module';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { MainPagesComponent } from './main-pages/main-pages.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MainPagesComponent } from './main-pages/main-pages.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

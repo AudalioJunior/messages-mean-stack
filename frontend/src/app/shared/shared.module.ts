@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InputModule } from './input/input.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    InputModule
   ],
-  declarations: []
+  declarations: [],
+  exports:[InputModule]
 })
 export class SharedModule { }
