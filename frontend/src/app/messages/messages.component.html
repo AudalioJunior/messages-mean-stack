@@ -1,7 +1,7 @@
 <div class="container-messages">
   <div class="box-messages" *ngFor="let message of messages">
-    <span class="user-id">User name</span>
-    <li>{{message}}</li>
+    <span class="user-id">{{message.userName}}</span>
+    <li>{{message.content}}</li>
   </div>
 </div>
 <div class="input-message">

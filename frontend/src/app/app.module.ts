@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { MessagesComponent } from './messages/messages.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,15 +19,15 @@ import { SharedModule } from './shared/shared.module';
     HeaderComponent,
     AuthComponent,
     RegisterUserComponent,
-    MainPagesComponent
+    MainPagesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

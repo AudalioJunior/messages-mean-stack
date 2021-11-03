@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessagesService } from './messages.service';
 
 @Component({
   selector: 'app-messages',
@@ -12,17 +13,24 @@ export class MessagesComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageService: MessagesService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.initForm();
+    await this.refreshMessages();
   }
 
   initForm(){
     this.formGroup = this.formBuilder.group({
       message: ['', Validators.required]
     })
+  }
+
+  async refreshMessages(){
+    const response = await this.messageService.getMessages();
+    this.messages = response.messages;
   }
 
   sendMessage(){
