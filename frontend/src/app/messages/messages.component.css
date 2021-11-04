@@ -1,3 +1,7 @@
+*{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .container-messages{
   background-color: #4c5a9a;
   width: 40rem;
@@ -24,6 +28,30 @@
     word-wrap: break-word;
 }
 
+.top-messages{
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons-area{
+  display: flex;
+}
+
+.icons-area .edit{
+  color: green;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.icons-area .delete{
+  color: red;
+  cursor: pointer;
+}
+
+.area-edit-modal{
+  display: flex;
+}
+
 .user-id{
   font-size: 10px;
 }
@@ -33,13 +61,56 @@
 }
 
 .input-message{
-  display: flex;
+    display: flex;
     background-color: #d8d0ff;
     width: 40rem;
     margin: auto;
     height: 3rem;
     border-bottom-left-radius: 7px; 
     border-bottom-right-radius: 7px;
+}
+
+.input-message-edit{
+  margin-left: 3rem;
+  background-color: #4c5a9a;
+  color: whitesmoke;
+  width: 100%;
+  height: 100%;
+  margin-right: 2px;
+  border-radius: 3px;
+  border: 0;
+}
+
+.displayEnable{
+  display: none;
+}
+
+.btn-send-edit button{
+  background-color: #4c5a9a;
+  color: whitesmoke;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  margin-left: 8px;
+  height: 100%;
+}
+
+.btn-send-edit{
+  margin-top: 6px;
+  margin-left: 6rem;
+}
+
+.modalEdit{
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  margin: auto;
+  border-radius: 8px;
+  background-color: #d8d0ff;
+  width: 20rem;
+  height: 8rem;
+  -webkit-box-shadow: 5px 3px 15px -4px #000000; 
+  box-shadow: 5px 3px 15px -4px #000000;
 }
 
 .input-message .input{
@@ -76,6 +147,13 @@ form{
   width: 100%;
   height: 100%;
 }
+
+h3{
+  color: #4c5a9a;
+  margin-left: 17px;
+}
+
+
 
 .input-message .btn-send button:hover{
   background-color: #a9a2ce;

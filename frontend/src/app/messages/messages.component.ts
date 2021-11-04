@@ -11,6 +11,9 @@ export class MessagesComponent implements OnInit {
 
   public messages: string[] = Array();
   public formGroup: FormGroup;
+  public userId: string = '6180c786b1078eaaac214d29';
+  public idEdit: string;
+  public isEnable: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,10 +36,28 @@ export class MessagesComponent implements OnInit {
     this.messages = response.messages;
   }
 
-  sendMessage(){
+  async sendMessage(){
     let message = this.formGroup.value.message;
-    this.messages.push(message);
-    this.formGroup.value.message;
+    await this.messageService.sendMessage(message, this.userId).then(() => {
+      this.refreshMessages();
+    })
   }
 
+  async deleteMessage(id: string){
+    let response = await this.messageService.deleteMessage(id);
+    alert(response.message);
+    this.refreshMessages();
+  }
+
+  editModal(id: string){
+    this.idEdit = id;
+    this.isEnable = !this.isEnable; 
+  }
+
+  async confirmEdit(){
+    let message = this.formGroup.value.message;
+    await this.messageService.updateMessage(this.idEdit, message);
+    this.refreshMessages();
+    this.isEnable = !this.isEnable; 
+  }
 }

@@ -1,16 +1,43 @@
 <div class="container-messages">
   <div class="box-messages" *ngFor="let message of messages">
-    <span class="user-id">{{message.userName}}</span>
+    <div class="top-messages">
+      <div>
+        <span class="user-id">{{message.userName}}</span>
+      </div>
+      <div class="icons-area" [ngClass]="{'displayEnable': isEnable}">
+        <div class="edit" (click)="editModal(message._id)">
+          <i class="far fa-edit"></i>
+        </div>
+        <div class="delete" (click)="deleteMessage(message._id)">
+          <i class="far fa-trash-alt"></i>
+        </div>
+      </div>
+    </div>
     <li>{{message.content}}</li>
   </div>
 </div>
-<div class="input-message">
+<div class="input-message" [ngClass]="{'displayEnable': isEnable}">
 <div class="input">
   <form [formGroup]="formGroup">
-    <input type="text" formControlName="message" placeholder="Digite sua mensagem!">
+    <input type="text" formControlName="message" placeholder=" Digite sua mensagem!">
   </form>
 </div>
 <div class="btn-send">
   <button (click)="sendMessage()">Enviar</button>
+</div>
+</div>
+
+<div class="modalEdit" [ngClass]="{'displayEnable': !isEnable}">
+<h3>Digite uma nova Mensagem:</h3>
+<div class="area-edit-modal">
+  <div>
+    <form [formGroup]="formGroup">
+      <input type="text" class="input-message-edit" placeholder=" Digite sua mensagem!" formControlName="message" placeholder=" Digite sua mensagem!">
+    </form>
+  </div>
+</div>
+<div class="btn-send-edit">
+  <button (click)="confirmEdit()">Enviar</button>
+  <button (click)="editModal()">Fechar</button>
 </div>
 </div>
