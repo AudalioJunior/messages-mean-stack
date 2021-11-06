@@ -1,3 +1,30 @@
-<p>
-  register-user works!
-</p>
+<body>
+  <div class="box-login">
+    <div class="titles-class">
+      <h2>Cadastrar um Usuário: </h2>
+      <span class="subtitle">Informe um usuário e uma senha!</span>
+    </div>
+    <form [formGroup]="formGroup">
+      <div class="input-area">
+        <div class="username">
+          <label for="userName">Seu usuário: </label>
+          <div class="area-input" >
+            <input type="text"  formControlName="user">
+          </div>
+        </div>
+        <div class="password">
+          <label for="userName">Sua senha: </label>
+          <div class="area-input">
+            <input type="password" formControlName="password">
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="button-confirm" (click)="submit()">
+     <span>Registrar</span>
+    </div>
+    <div class="footer">
+      <a href="">Voltar a tela inicial!</a>
+    </div>
+  </div>
+</body>
