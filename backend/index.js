@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UserRoutes = require('./src/controllers/UserController');
 const MessagesRoutes = require('./src/controllers/MessagesController');
+const AuthRouter = require('./src/controllers/TokenController'); 
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,13 +14,15 @@ mongoose.connect('mongodb://localhost:27017/messages-system')
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader("Access-Control-Allow-Headers", "Origin, get, values, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS, PUT');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
 
 app.use('/users', UserRoutes);
 app.use('/messages', MessagesRoutes);
+app.use('/token', AuthRouter);
 
 app.listen(3000);

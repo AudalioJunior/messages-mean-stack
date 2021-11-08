@@ -4,17 +4,23 @@
       <h2>LOGIN</h2>
       <span class="subtitle">Bem-vindo ao sistema de mensagens!</span>
     </div>
-    <div class="input-area">
-      <div class="username">
-        <label for="userName">Usuário: </label>
-        <app-input [type]="'text'"></app-input>
+    <form [formGroup]="formGroup">
+      <div class="input-area">
+        <div class="username">
+          <label for="userName">Usuário: </label>
+          <div class="area-input" >
+            <input type="text"  formControlName="user">
+          </div>
+        </div>
+        <div class="password">
+          <label for="userName">Senha: </label>
+          <div class="area-input">
+            <input type="password" formControlName="password">
+          </div>
+        </div>
       </div>
-      <div class="password">
-        <label for="userName">Senha: </label>
-        <app-input [type]="'password'"></app-input>
-      </div>
-    </div>
-    <div class="button-confirm">
+    </form>
+    <div class="button-confirm" (click)="submit()">
      <span>Login</span>
     </div>
     <div class="footer">

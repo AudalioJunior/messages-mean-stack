@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../auth/user.service';
 import { MessagesService } from './messages.service';
 
 @Component({
@@ -11,13 +12,13 @@ export class MessagesComponent implements OnInit {
 
   public messages: string[] = Array();
   public formGroup: FormGroup;
-  public userId: string = '6180c786b1078eaaac214d29';
   public idEdit: string;
   public isEnable: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: MessagesService
+    private messageService: MessagesService,
+    private userService: UserService
   ) { }
 
   async ngOnInit() {
@@ -38,9 +39,13 @@ export class MessagesComponent implements OnInit {
 
   async sendMessage(){
     let message = this.formGroup.value.message;
-    await this.messageService.sendMessage(message, this.userId).then(() => {
-      this.refreshMessages();
-    })
+    try {
+      await this.messageService.sendMessage(message, this.userService.idUser).then(() => {
+        this.refreshMessages();
+      })
+    } catch (error) {
+      alert("Ops, ocorreu algum erro!")
+    }
   }
 
   async deleteMessage(id: string){

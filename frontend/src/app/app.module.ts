@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { MainPagesComponent } from './main-pages/main-pages.component';
 import { SharedModule } from './shared/shared.module';
+import { UserService } from './auth/user.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

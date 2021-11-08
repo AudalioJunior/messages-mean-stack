@@ -5,10 +5,10 @@
         <span class="user-id">{{message.userName}}</span>
       </div>
       <div class="icons-area" [ngClass]="{'displayEnable': isEnable}">
-        <div class="edit" (click)="editModal(message._id)">
+        <div class="edit" *ngIf="message.user === this.userService.idUser" (click)="editModal(message._id)">
           <i class="far fa-edit"></i>
         </div>
-        <div class="delete" (click)="deleteMessage(message._id)">
+        <div class="delete" (click)="deleteMessage(message._id)" *ngIf="message.user === this.userService.idUser">
           <i class="far fa-trash-alt"></i>
         </div>
       </div>
