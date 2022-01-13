@@ -11,8 +11,10 @@ import { AppRoutingModule } from './app.routing.module';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { MainPagesComponent } from './main-pages/main-pages.component';
 import { SharedModule } from './shared/shared.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { UserService } from './auth/user.service';
 
+const config: SocketIoConfig = { url: 'http://localhost:4200', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { UserService } from './auth/user.service';
     AppRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    SocketIoModule,
     HttpClientModule
   ],
   providers: [UserService],

@@ -1,16 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const http = require("http");
 const UserRoutes = require('./src/controllers/UserController');
 const MessagesRoutes = require('./src/controllers/MessagesController');
-const AuthRouter = require('./src/controllers/TokenController'); 
+const AuthRouter = require('./src/controllers/TokenController');
+const { Server } = require('socket.io');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Socket Config
+const serverHttp = http.createServer(app);
+const io = new Server(serverHttp);
+
+io.on("connection", socket => {
+    console.log(socket.id)
+})
 
 mongoose.connect('mongodb://localhost:27017/messages-system')
-.then(() => { console.log("Banco conectado!")})
+    .then(() => { console.log("Banco conectado!") })
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,9 +30,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-
 app.use('/users', UserRoutes);
 app.use('/messages', MessagesRoutes);
 app.use('/token', AuthRouter);
 
-app.listen(3000);
+serverHttp.listen(3000);
