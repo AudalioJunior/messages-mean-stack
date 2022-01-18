@@ -6,8 +6,8 @@ const UserRoutes = require('./src/controllers/UserController');
 const MessagesRoutes = require('./src/controllers/MessagesController');
 const AuthRouter = require('./src/controllers/TokenController');
 const { Server } = require('socket.io');
-
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -15,9 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const serverHttp = http.createServer(app);
 const io = new Server(serverHttp);
 
-io.on("connection", socket => {
-    console.log(socket.id)
-})
 
 mongoose.connect('mongodb://localhost:27017/messages-system')
     .then(() => { console.log("Banco conectado!") })
@@ -34,4 +31,11 @@ app.use('/users', UserRoutes);
 app.use('/messages', MessagesRoutes);
 app.use('/token', AuthRouter);
 
-serverHttp.listen(3000);
+io.on('connection', socket => {
+    console.log("Usuário conectado com o socket")
+    console.log(socket.id)
+})
+
+serverHttp.listen(3000, () => {
+    console.log("Conectado na porta 3000")
+});
